@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/member")
 public class MemberController {
     @Autowired
     private MemberDao memberDao;
