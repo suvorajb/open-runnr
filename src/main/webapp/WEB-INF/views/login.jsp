@@ -100,7 +100,7 @@
 
 			<div class="col-sm-5 col-sm-offset-4 bootcards-cards">
 				<div class="panel panel-default">
-					<form:form class="form-horizontal" modelAttribute="loginform" method="POST" action="/open-runnr/login">
+					<form:form class="form-horizontal" modelAttribute="loginform" method="POST" action="/login">
 						<div class="panel-heading clearfix">
 							<h3 class="panel-title pull-left">Login</h3>
 						</div>
