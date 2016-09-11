@@ -2,7 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<title>Login</title>
+<title>ACME Login</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,64 +35,65 @@
 
 <body>
 
-	<!-- fixed top navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
 
-			<button type="button"
-				class="btn btn-default btn-back navbar-left pull-left hidden"
-				onclick="history.back()">
-				<i class="fa fa-lg fa-chevron-left"></i><span>Back</span>
-			</button>
-			<!-- menu button to show/ hide the off canvas slider -->
-			<button type="button"
-				class="btn btn-default btn-menu navbar-left pull-left offCanvasToggle"
-				data-toggle="offcanvas">
-				<i class="fa fa-lg fa-bars"></i><span>Menu</span>
-			</button>
+  <!-- fixed top navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-			<a class="navbar-brand no-break-out"
-				title="Healthy Appraisal (Beta) V1.0.0b" href="/">Healthy
-				Appraisal (Beta) V1.0.0b</a>
+      <button type="button" class="btn btn-default btn-back navbar-left pull-left hidden" onclick="history.back()">
+        <i class="fa fa-lg fa-chevron-left"></i><span>Back</span>
+      </button>
+      <!-- menu button to show/ hide the off canvas slider -->
+      <button type="button" class="btn btn-default btn-menu navbar-left pull-left offCanvasToggle" data-toggle="offcanvas">
+        <i class="fa fa-lg fa-bars"></i><span>Menu</span>
+      </button>  
 
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="/dashboard" data-pjax="#main"
-						data-title="Customers"> <i class="fa fa-dashboard"></i>
-							Dashboard
-					</a></li>
-					<li><a href="/login" data-pjax="#main" data-title="Companies">
-							<i class="fa fa-building-o"></i> Login
-					</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+      <a class="navbar-brand no-break-out" title="Customers" href="/">ACME HealthAppraisal V1.0.0</a>  
+      
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/dashboard" data-pjax="#main" data-title="Customers">
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>          
+          </li>
+		  <li>		
+			<c:if test="${uinfo.loginstatus == true }"> <a href="/logout">Logout</a> </c:if> 
+			<c:if test="${uinfo.loginstatus != true }"> <a href="/login">Login</a> </c:if>
+		  </li>
 
-	<!-- slide in menu (mobile only) -->
-	<nav id="offCanvasMenu" class="navmenu offcanvas offcanvas-left">
-		<ul class="nav">
-			<li><a href="/dashboard" data-pjax="#main"
-				data-title="Customers"> <i class="fa fa-lg fa-dashboard"></i>
-					Dashboard
-			</a></li>
-			<li><a href="/companies" data-pjax="#main"
-				data-title="Companies"> <i class="fa fa-lg fa-building-o"></i>
-					Login
-			</a></li>
-		</ul>
+        </ul>
+      </div>          
+    </div>
+  </div>   
 
-		<div
-			style="margin-top: 20px; padding-left: 20px; font-size: 12px; color: #777">v1.0.1</div>
-	</nav>
+  <!-- slide in menu (mobile only) -->
+  <nav id="offCanvasMenu" class="navmenu offcanvas offcanvas-left">
+    <ul class="nav">
+      <li>
+        <a href="/dashboard" data-pjax="#main" data-title="Customers">
+          <i class="fa fa-lg fa-dashboard"></i>
+          Dashboard
+        </a>          
+      </li>
+      <li>
+			<c:if test="${uinfo.loginstatus == true }"> <a href="/logout">Logout</a> </c:if> 
+			<c:if test="${uinfo.loginstatus != true }"> <a href="/login">Login</a> </c:if>        
+      </li>
+    </ul>
+
+    <div style="margin-top:20px; padding-left: 20px; font-size: 12px; color: #777">v1.0.1</div>
+  </nav>
+
 
 	<div class="container bootcards-container" id="main">
 
@@ -124,11 +125,11 @@
 
 						<div class="panel-footer">
 							<div class="btn-group pull-right">
-								<button class="btn btn-danger" type="submit">
+								<button class="btn btn-success" type="submit">
 									<i class="fa fa-check"></i> Login
 								</button>
 								&nbsp;
-								<button class="btn btn-success" type="reset">
+								<button class="btn btn-danger" type="reset">
 									<i class="fa fa-times"></i> Reset
 								</button>
 							</div>

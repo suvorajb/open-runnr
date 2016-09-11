@@ -1,8 +1,8 @@
-yeah <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<title>Login</title>
+<title>Dashboard - Employee View</title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,70 +35,70 @@ yeah <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <body>
 
-	<!-- fixed top navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
+  <!-- fixed top navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-			<button type="button"
-				class="btn btn-default btn-back navbar-left pull-left hidden"
-				onclick="history.back()">
-				<i class="fa fa-lg fa-chevron-left"></i><span>Back</span>
-			</button>
-			<!-- menu button to show/ hide the off canvas slider -->
-			<button type="button"
-				class="btn btn-default btn-menu navbar-left pull-left offCanvasToggle"
-				data-toggle="offcanvas">
-				<i class="fa fa-lg fa-bars"></i><span>Menu</span>
-			</button>
+      <button type="button" class="btn btn-default btn-back navbar-left pull-left hidden" onclick="history.back()">
+        <i class="fa fa-lg fa-chevron-left"></i><span>Back</span>
+      </button>
+      <!-- menu button to show/ hide the off canvas slider -->
+      <button type="button" class="btn btn-default btn-menu navbar-left pull-left offCanvasToggle" data-toggle="offcanvas">
+        <i class="fa fa-lg fa-bars"></i><span>Menu</span>
+      </button>  
 
-			<a class="navbar-brand no-break-out"
-				title="ACME Health Appraisal (Beta) V1.0.0b" href="/">ACME Health Appraisal (Beta) V1.0.0b</a>
+      <a class="navbar-brand no-break-out" title="Customers" href="/">ACME HealthAppraisal V1.0.0</a>  
+      
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/dashboard" data-pjax="#main" data-title="Customers">
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>          
+          </li>
+		  <li>		
+			<c:if test="${uinfo.loginstatus == true }"> <a href="/logout">Logout</a> </c:if> 
+			<c:if test="${uinfo.loginstatus != true }"> <a href="/login">Login</a> </c:if>
+		  </li>
 
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="/open-runnr/dashboard" data-pjax="#main" data-title="Customers">Dashboard</a>
-					</li>
-					<li>		
-						<c:if test="${uinfo.loginstatus == true }"> | <a href="/open-runnr/logout">Logout</a> </c:if> 
-						<c:if test="${uinfo.loginstatus != true }"> | <a href="/open-runnr/login">Login</a> </c:if>
-					</li>
-				</ul>
-			</div>
-			
-			
-		</div>
-	</div>
+        </ul>
+      </div>          
+    </div>
+  </div>   
 
-	<!-- slide in menu (mobile only) -->
-	<nav id="offCanvasMenu" class="navmenu offcanvas offcanvas-left">
-		<ul class="nav">
-				<li>
-					<a href="/open-runnr/dashboard" data-pjax="#main" data-title="Customers">Dashboard</a>
-				</li>
-				<li>		
-					<c:if test="${uinfo.loginstatus == true }"> | <a href="/open-runnr/logout">Logout</a> </c:if> 
-					<c:if test="${uinfo.loginstatus != true }"> | <a href="/open-runnr/login">Login</a> </c:if>
-				</li>
-		</ul>
+  <!-- slide in menu (mobile only) -->
+  <nav id="offCanvasMenu" class="navmenu offcanvas offcanvas-left">
+    <ul class="nav">
+      <li>
+        <a href="/dashboard" data-pjax="#main" data-title="Customers">
+          <i class="fa fa-lg fa-dashboard"></i>
+          Dashboard
+        </a>          
+      </li>
+      <li>
+			<c:if test="${uinfo.loginstatus == true }"> <a href="/logout">Logout</a> </c:if> 
+			<c:if test="${uinfo.loginstatus != true }"> <a href="/login">Login</a> </c:if>        
+      </li>
+    </ul>
 
-		<div
-			style="margin-top: 20px; padding-left: 20px; font-size: 12px; color: #777">v1.0.1</div>
-	</nav>
+    <div style="margin-top:20px; padding-left: 20px; font-size: 12px; color: #777">v1.0.1</div>
+  </nav>
+
 
 	<div class="container bootcards-container" id="main">
 
 		<div class="row">
 		
-			<c:if test="${uinfo.loginstatus == true }"><h2>Welcome ${uinfo.usrnm }</h2></c:if>
+			<c:if test="${uinfo.loginstatus == true }"><h2>Welcome <img src="<c:url value="${uinfo.usrimg }"/>" class="img-rounded" style="width: 65px; height: auto;"/> ${uinfo.usrnm }</h2></c:if>
 			
 			<div class="panel panel-default bootcards-summary">
 
@@ -111,36 +111,36 @@ yeah <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 						<div class="col-xs-6 col-sm-4">
 							<a class="bootcards-summary-item"
-								href="/open-runnr/employee/allgoals"> <i
+								href="/employee/allgoals"> <i
 								class="fa fa-3x fa-arrow-circle-o-right"></i>
 								<h4>
-									<span class="label label-info">50</span> View All Goals
+									<!-- span class="label label-info">50</span --> View All Goals
 								</h4>
 							</a>
 						</div>
 
 						<div class="col-xs-6 col-sm-4">
 							<a class="bootcards-summary-item"
-								href="/open-runnr/employee/mygoals"> <i
+								href="/employee/mygoals"> <i
 								class="fa fa-3x fa-clipboard"></i>
 								<h4>
-									<span class="label label-info">24</span> My Enrolled Goals
+									<!-- span class="label label-info">24</span --> My Enrolled Goals
 								</h4>
 							</a>
 						</div>
 						
 						<div class="col-xs-6 col-sm-4">
 							<a class="bootcards-summary-item"
-								href="/open-runnr/employee/completedgoals"> <i
+								href="/employee/completedgoals"> <i
 								class="fa fa-3x fa-clipboard"></i>
 								<h4>
-									<span class="label label-info">24</span> View Completed Goals
+									<!-- span class="label label-info">24</span --> View Completed Goals
 								</h4>
 							</a>
 						</div>
 						
 						<div class="col-xs-6 col-sm-4">
-							<a class="bootcards-summary-item" href="/open-runnr/leaderboard">
+							<a class="bootcards-summary-item" href="/leaderboards">
 								<i class="fa fa-3x fa-clipboard"></i>
 								<h4>Leaderboard</h4>
 							</a>

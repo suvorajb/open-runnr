@@ -20,4 +20,6 @@ public interface MngrGoalsDao {
     public EnrolledGoals getGoalSubmttdRvw(Long id);
     
     public void submitAppraisal(EnrolledGoals goal);
+    
+    public List<EnrolledGoals> getAllCompletdGoals(String empl_email);
 }

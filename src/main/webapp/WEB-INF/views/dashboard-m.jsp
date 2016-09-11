@@ -35,62 +35,64 @@
 
 <body>
 
-	<!-- fixed top navbar -->
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
+  <!-- fixed top navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
 
-			<button type="button"
-				class="btn btn-default btn-back navbar-left pull-left hidden"
-				onclick="history.back()">
-				<i class="fa fa-lg fa-chevron-left"></i><span>Back</span>
-			</button>
-			<!-- menu button to show/ hide the off canvas slider -->
-			<button type="button"
-				class="btn btn-default btn-menu navbar-left pull-left offCanvasToggle"
-				data-toggle="offcanvas">
-				<i class="fa fa-lg fa-bars"></i><span>Menu</span>
-			</button>
+      <button type="button" class="btn btn-default btn-back navbar-left pull-left hidden" onclick="history.back()">
+        <i class="fa fa-lg fa-chevron-left"></i><span>Back</span>
+      </button>
+      <!-- menu button to show/ hide the off canvas slider -->
+      <button type="button" class="btn btn-default btn-menu navbar-left pull-left offCanvasToggle" data-toggle="offcanvas">
+        <i class="fa fa-lg fa-bars"></i><span>Menu</span>
+      </button>  
 
-			<a class="navbar-brand no-break-out" href="/">ACME Health Appraisal V1.0.0b</a>
+      <a class="navbar-brand no-break-out" title="Customers" href="/">ACME HealthAppraisal V1.0.0</a>  
+      
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/dashboard" data-pjax="#main" data-title="Customers">
+              <i class="fa fa-dashboard"></i>
+              Dashboard
+            </a>          
+          </li>
+		  <li>		
+			<c:if test="${uinfo.loginstatus == true }"> <a href="/logout">Logout</a> </c:if> 
+			<c:if test="${uinfo.loginstatus != true }"> <a href="/login">Login</a> </c:if>
+		  </li>
 
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li>
-						<a href="/open-runnr/dashboard">Dashboard</a>
-					</li>
-					<li>		
-						<c:if test="${uinfo.loginstatus == true }"> | <a href="/open-runnr/logout">Logout</a> </c:if> 
-						<c:if test="${uinfo.loginstatus != true }"> | <a href="/open-runnr/login">Login</a> </c:if>
-					</li>
-				</ul>
-			</div>
-			
-		</div>
-	</div>
+        </ul>
+      </div>          
+    </div>
+  </div>   
 
-	<!-- slide in menu (mobile only) -->
-	<nav id="offCanvasMenu" class="navmenu offcanvas offcanvas-left">
-		<ul class="nav">
-				<li>
-					<a href="/open-runnr/dashboard">Dashboard</a>
-				</li>
-				<li>		
-					<c:if test="${uinfo.loginstatus == true }"> | <a href="/open-runnr/logout">Logout</a> </c:if> 
-					<c:if test="${uinfo.loginstatus != true }"> | <a href="/open-runnr/login">Login</a> </c:if>
-				</li>
-		</ul>
+  <!-- slide in menu (mobile only) -->
+  <nav id="offCanvasMenu" class="navmenu offcanvas offcanvas-left">
+    <ul class="nav">
+      <li>
+        <a href="/dashboard" data-pjax="#main" data-title="Customers">
+          <i class="fa fa-lg fa-dashboard"></i>
+          Dashboard
+        </a>          
+      </li>
+      <li>
+			<c:if test="${uinfo.loginstatus == true }"> <a href="/logout">Logout</a> </c:if> 
+			<c:if test="${uinfo.loginstatus != true }"> <a href="/login">Login</a> </c:if>        
+      </li>
+    </ul>
 
-		<div
-			style="margin-top: 20px; padding-left: 20px; font-size: 12px; color: #777">v1.0.1</div>
-	</nav>
+    <div style="margin-top:20px; padding-left: 20px; font-size: 12px; color: #777">v1.0.1</div>
+  </nav>
+
 
 	<div class="container bootcards-container" id="main">
 
@@ -107,28 +109,28 @@
 					<div class="row">
 
 						<div class="col-xs-6 col-sm-4">
-							<a class="bootcards-summary-item" href="/contacts"> <i
+							<a class="bootcards-summary-item" href="/leaderboards"> <i
 								class="fa fa-3x fa-users"></i>
 								<h4>
-									<span class="label label-info">20</span>Manage Team Members
+									<!-- span class="label label-info">5</span -->View Team Members Stat
 								</h4>
 							</a>
 						</div>
 
 						<div class="col-xs-6 col-sm-4">
-							<a class="bootcards-summary-item" href="/open-runnr/manage/goals">
+							<a class="bootcards-summary-item" href="/manage/goals">
 								<i class="fa fa-3x fa-arrow-circle-o-right"></i>
 								<h4>
-									<span class="label label-info">50</span> Manage Fitness Goals
+									<!-- span class="label label-info">50</span --> Manage Fitness Goals
 								</h4>
 							</a>
 						</div>
 
 						<div class="col-xs-6 col-sm-4">
-							<a class="bootcards-summary-item" href="/open-runnr/review/submittdgoals">
+							<a class="bootcards-summary-item" href="/review/submittdgoals">
 								<i class="fa fa-3x fa-clipboard"></i>
 								<h4>
-									<span class="label label-info">24</span> Review Submitted Goals
+									<!-- span class="label label-info">24</span --> Review Submitted Goals
 								</h4>
 							</a>
 						</div>

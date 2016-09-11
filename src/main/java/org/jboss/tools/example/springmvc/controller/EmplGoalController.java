@@ -123,4 +123,26 @@ public class EmplGoalController {
 		uiModel.addAttribute("completedgoals", completedgoals);
 		return "empl_mygoals";
 	}
+	
+	
+	@RequestMapping(value = "/employee/goalstat", method = RequestMethod.GET)
+	public String displayGoalsStat(HttpServletRequest req, Model uiModel) {
+		UsrInfo uinf = (UsrInfo)req.getSession().getAttribute("uinfo");
+		
+		List<EnrolledGoals> statgoals = emplGoalDao.getAllCompletdGoals(uinf.getUsremail());
+		int totscore = 0;
+		
+		UsrInfo udata = new UsrInfo();
+		udata.setUsremail(uinf.getUsremail());
+		udata.setUsrnm(uinf.getUsrnm());
+		udata.setGoals(statgoals);
+		
+		for(EnrolledGoals goal : statgoals) {
+			totscore += goal.getMngr_score_awarded();
+		}
+		udata.setTotscore(totscore);
+		
+		uiModel.addAttribute("udata", udata);
+		return "empl_goalstat";
+	}	
 }

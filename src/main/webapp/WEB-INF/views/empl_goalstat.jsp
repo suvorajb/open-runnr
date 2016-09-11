@@ -95,49 +95,36 @@
 
 	<div class="container bootcards-container" id="main">
 
-	<div class="row">
-		<div class="bs-example bs-example-type">
-			<h2>Goals List <span class="pull-right"><a class="btn btn-primary" href="/creategoal">Create Goal</a></span></h2>
-			<div class="bootcards-list">
-			  <div class="panel panel-default">
-				
-				<c:if test="${not empty goals}">
-					<div class="list-group">
-						<c:forEach items="${goals}" var="goal">
-							<a class="list-group-item" href="/viewgoal?goalid=${goal.id}">
-								<div class="row">
-								  <div class="col-sm-6">
-									<i class="fa fa-3x fa-arrow-circle-o-right pull-left"></i>
-									<h4 class="list-group-item-heading">${goal.goal_title}</h4>
-									<p class="list-group-item-text">${goal.goal_desc}</p>
-								  </div>
-								  <div class="col-sm-6">
-									<c:if test="${goal.goal_category eq 'Eating' }">
-										<h3 class="list-group-item-text"><span class="label label-success">${goal.goal_category }</span></h3>
-									</c:if>
-									<c:if test="${goal.goal_category eq 'Fitness' }">
-										<h3 class="list-group-item-text"><span class="label label-warning">${goal.goal_category }</span></h3>
-									</c:if>
-									<c:if test="${goal.goal_category eq 'LifeStyle' }">
-										<h3 class="list-group-item-text"><span class="label label-primary">${goal.goal_category }</span></h3>
-									</c:if>
-								  </div>
-								</div>
-							</a>
-						</c:forEach>
-					</div>
-				</c:if>
-				
-				<c:if test="${empty goals}">
-					
-					<h4> No Goals created... Click the <u>Create Goal</u> button to create Goal for your team member </h4>
-				
-				</c:if>
-				
-			  </div>
-			</div>
+		<div class="row">
+			<c:if test="${not empty udata }">
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title">Completed Goals Summary for ${udata.usrnm }</h3>
+					  </div>
+					  <div class="table-responsive">
+					    <table class="table table-hover">
+					      <thead>
+					        <tr class="active"><th>Goal</th><th>Start Date</th><th>Manager Feedback</th><th>Score</th></tr>
+					      </thead>
+					      <tbody>
+					      <c:forEach items="${udata.goals }" var="goal">
+					        <tr>
+					        	<td>${goal.goal_title }</td>
+					        	<td>${goal.empl_goal_start_date }</td>
+					        	<td>${goal.mngr_comments }</td>
+					        	<td>${goal.mngr_score_awarded }</td>
+					        </tr>
+					      </c:forEach>
+					      </tbody>
+					    </table>
+					  </div>
+					  <div class="panel-footer">
+					    
+					  </div>
+				</div>
+			</c:if>
 		</div>
-	</div>
+		<!-- //row -->
 
 	</div>
 	<!-- Load the required JavaScript libraries -->

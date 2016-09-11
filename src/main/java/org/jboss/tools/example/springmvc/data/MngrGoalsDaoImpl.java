@@ -72,4 +72,19 @@ public class MngrGoalsDaoImpl implements MngrGoalsDao {
 	public void submitAppraisal(EnrolledGoals goal) {
 		em.merge(goal);
 	}
+
+	@Override
+	public List<EnrolledGoals> getAllCompletdGoals(String empl_email) {
+	
+		CriteriaBuilder cb = em.getCriteriaBuilder();
+		CriteriaQuery<EnrolledGoals> criteria = cb.createQuery(EnrolledGoals.class);
+		Root<EnrolledGoals> goal = criteria.from(EnrolledGoals.class);
+		
+		criteria.select(goal)
+				.where(cb.equal(goal.get("empl_email"), empl_email))
+				.where(cb.equal(goal.get("flag_completed"), 1));
+		
+		return em.createQuery(criteria).getResultList();
+	
+	}
 }

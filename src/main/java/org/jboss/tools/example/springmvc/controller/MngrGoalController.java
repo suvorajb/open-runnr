@@ -1,14 +1,17 @@
 package org.jboss.tools.example.springmvc.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.tools.example.springmvc.data.MngrGoalsDao;
-import org.jboss.tools.example.springmvc.form.EnrolledGoalForm;
+import org.jboss.tools.example.springmvc.data.ScoreComparator;
 import org.jboss.tools.example.springmvc.form.GoalForm;
 import org.jboss.tools.example.springmvc.model.EnrolledGoals;
 import org.jboss.tools.example.springmvc.model.Goals;
+import org.jboss.tools.example.springmvc.model.UsrInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -134,5 +137,90 @@ public class MngrGoalController {
 		return "redirect:/dashboard";
 	}	
 	
+	@RequestMapping(value = "/leaderboards", method = RequestMethod.GET)
+	public String displayLeaderboards(HttpServletRequest req, Model uiModel) {
+
+		List<UsrInfo> teammembers = new ArrayList<UsrInfo>();
+		List<EnrolledGoals> statgoals = null;
+		
+		UsrInfo u1 = new UsrInfo();
+		u1.setUsremail("sofia@acme.com");
+		u1.setUsrnm("Sofia Swift");
+		u1.setUsrimg("/resources/gfx/sofia_swift.jpg");
+		statgoals = goalsDao.getAllCompletdGoals(u1.getUsremail());
+		int totscore1 = 0;
+		for(EnrolledGoals goal : statgoals) {
+			totscore1 += goal.getMngr_score_awarded();
+		}
+		u1.setTotscore(totscore1);
+		
+		UsrInfo u2 = new UsrInfo();
+		u2.setUsremail("nicki@acme.com");
+		u2.setUsrnm("Nicki Taylor");
+		u2.setUsrimg("/resources/gfx/nicki_taylor.jpg");
+		statgoals = null;
+		statgoals = goalsDao.getAllCompletdGoals(u2.getUsremail());
+		int totscore2 = 0;
+		if(statgoals!=null) {
+			for(EnrolledGoals goal : statgoals) {
+				totscore2 += goal.getMngr_score_awarded();
+			}
+		}
+		u2.setTotscore(totscore2);
+		
+		UsrInfo u3 = new UsrInfo();
+		u3.setUsremail("chris@acme.com");
+		u3.setUsrnm("Chris Grocott");
+		u3.setUsrimg("/resources/gfx/chris_grocott.jpg");
+		statgoals = null;
+		statgoals = goalsDao.getAllCompletdGoals(u3.getUsremail());
+		int totscore3 = 0;
+		if(statgoals!=null) {
+			for(EnrolledGoals goal : statgoals) {
+				totscore3 += goal.getMngr_score_awarded();
+			}
+		}
+		u3.setTotscore(totscore3);
+		
+		UsrInfo u4 = new UsrInfo();
+		u4.setUsremail("jack@acme.com");
+		u4.setUsrnm("Jack Floyd");
+		u4.setUsrimg("/resources/gfx/Jack_Floyd.jpg");
+		statgoals = null;
+		statgoals = goalsDao.getAllCompletdGoals(u4.getUsremail());
+		int totscore4 = 0;
+		if(statgoals!=null) {
+			for(EnrolledGoals goal : statgoals) {
+				totscore4 += goal.getMngr_score_awarded();
+			}
+		}
+		u4.setTotscore(totscore4);
+		
+		UsrInfo u5 = new UsrInfo();
+		u5.setUsremail("ricky@acme.com");
+		u5.setUsrnm("Ricky Lee");
+		u5.setUsrimg("/resources/gfx/Ricky_Lee.jpg");
+		statgoals = null;
+		statgoals = goalsDao.getAllCompletdGoals(u5.getUsremail());
+		int totscore5 = 0;
+		if(statgoals!=null) {
+			for(EnrolledGoals goal : statgoals) {
+				totscore5 += goal.getMngr_score_awarded();
+			}
+		}
+		u5.setTotscore(totscore5);		
+		
+		teammembers.add(u1);
+		teammembers.add(u2);
+		teammembers.add(u3);
+		teammembers.add(u4);
+		teammembers.add(u5);
+		System.out.println("teammembers: " + teammembers);
+		
+		Collections.sort(teammembers, new ScoreComparator());
+
+		uiModel.addAttribute("teammembers", teammembers);
+		return "leaderboards";
+	}
 
 }

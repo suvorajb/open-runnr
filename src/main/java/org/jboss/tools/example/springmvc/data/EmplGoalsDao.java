@@ -22,6 +22,4 @@ public interface EmplGoalsDao {
     public void submitEnrolledGoalForReviewByMngr(EnrolledGoals goal);
     
     public List<EnrolledGoals> getAllCompletdGoals(String empl_email);
-
-    
 }
