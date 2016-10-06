@@ -70,6 +70,8 @@ public class MngrGoalsDaoImpl implements MngrGoalsDao {
 
 	@Override
 	public void submitAppraisal(EnrolledGoals goal) {
+		goal.setSubmitted_for_review(0);
+		goal.setFlag_completed(1);
 		em.merge(goal);
 	}
 
